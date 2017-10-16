@@ -3,17 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="
-            http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        ">
-
-    <context:component-scan base-package="com.dhc.ttshop.web"/>
-
+            ">
+    <!--扫描com.dhc.ttshop.web包下（或者其子包下）的所有注解类-->
+    <!--什么叫被扫描到？ 凡是被扫描到的Action，就会放到IoC容器中，换句话说，当控制反转容器启动的时候，就会把Action实例化-->
+    <context:component-scan base-package="com.lkf.ttshop.web"/>
+    <!--@RequestMapping @ResponseBody-->
+    <!--第一步：在pom.xml中添加jackson2的依赖-->
+    <!--第二步：在spring-mvc.xml添加<mvc:annotation-driven/>-->
+    <!--第三步：在springmvc的方法上写@ResponseBody-->
     <mvc:annotation-driven/>
 
     <!--视图解析器-->
@@ -38,9 +41,10 @@
     </bean>
 
     <!--静态资源解析-->
+    <!--一旦在这里配置了，访问http://localhost:8080/ttshop/js/test.js请求时，就不会经过action-->
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
-    <mvc:resources mapping="/ueditor/**" location="/ueditor/"/>
+
 
 </beans>
