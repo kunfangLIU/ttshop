@@ -21,6 +21,11 @@
             <artifactId>tt-manager-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- 文件上传组件 -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
         <!--jsp相关-->
         <dependency>
             <groupId>javax.servlet</groupId>

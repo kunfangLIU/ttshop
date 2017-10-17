@@ -17,7 +17,22 @@
     <!--第一步：在pom.xml中添加jackson2的依赖-->
     <!--第二步：在spring-mvc.xml添加<mvc:annotation-driven/>-->
     <!--第三步：在springmvc的方法上写@ResponseBody-->
-    <mvc:annotation-driven/>
+    <!--解决@ResponseBody中文乱码问题-->
+    <!--若为spring3，则MappingJacksonHttpMessageConverter-->
+    <!--若为spring4，则MappingJackson2HttpMessageConverter-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
