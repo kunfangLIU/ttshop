@@ -1,6 +1,9 @@
 package com.lkf.ttshop.web;
 
+import com.lkf.common.dto.Page;
+import com.lkf.common.dto.Result;
 import com.lkf.ttshop.pojo.po.TbItem;
+import com.lkf.ttshop.pojo.vo.TbItemCustom;
 import com.lkf.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -9,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import  java.util.List;
+
+import java.util.List;
 /**
  * User: Administrator
  * Date: 2017/10/17
@@ -33,5 +37,16 @@ public class ItemAction {
     @ResponseBody
     public List<TbItem> listItems() {
         return itemService.listItems();
+    }
+
+    /*@ResponseBody
+    @RequestMapping(value = "/items" ,method = RequestMethod.GET)
+    public Result<TbItem> listItemByPage(Page page){
+        return  itemService.listItemByPage(page);
+    }*/
+    @RequestMapping(value = "/items",method = RequestMethod.GET)
+    @ResponseBody
+    public Result<TbItemCustom> listItemsByPage(Page page){
+        return itemService.listItemsByPage(page);
     }
 }
