@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 /**
  * User: Administrator
  * Date: 2017/10/17
@@ -33,20 +31,20 @@ public class ItemAction {
 
         return itemService.getById(itemId);
     }
-    @RequestMapping("/items")
+   /* @RequestMapping("/items")
     @ResponseBody
     public List<TbItem> listItems() {
         return itemService.listItems();
-    }
-
-    /*@ResponseBody
-    @RequestMapping(value = "/items" ,method = RequestMethod.GET)
-    public Result<TbItem> listItemByPage(Page page){
-        return  itemService.listItemByPage(page);
     }*/
-    @RequestMapping(value = "/items",method = RequestMethod.GET)
-    @ResponseBody
-    public Result<TbItemCustom> listItemsByPage(Page page){
-        return itemService.listItemsByPage(page);
-    }
+
+  /*  @ResponseBody
+    @RequestMapping("/items")
+    public Result<TbItem> listItems(Page page){
+        return itemService.listItems(page);
+    }*/
+  @ResponseBody
+  @RequestMapping("/items")
+  public Result<TbItemCustom> listItems(Page page){
+      return itemService.listItems(page);
+  }
 }

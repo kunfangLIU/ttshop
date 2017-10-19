@@ -15,7 +15,7 @@
             {field:'num',title:'库存数量',width:100},
             {field:'barcode',title:'商品条形码',width:100},
             {field:'image',title:'商品图片',width:100},
-            {field:'cid',title:'所属类目',width:100},
+            {field:'catName',title:'所属类目',width:100},
             {field:'status',title:'商品状态',width:100},
             {field:'created',title:'创建时间',width:100},
             {field:'updated',title:'更新时间',width:100}

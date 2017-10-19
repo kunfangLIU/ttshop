@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lkf.ttshop.dao.TbItemCustomMapper" >
+  <resultMap id="BaseResultMap" type="com.lkf.ttshop.pojo.po.TbItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="sell_point as sellPoint" property="sellPoint" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <!--<sql id = "Base_Column_List">
+    id,title,sell_point,price,num,barcode,image,cid,status,created,updated
+  </sql>
+  <select id="listItemsByPage" resultType="com.lkf.ttshop.pojo.po.TbItem" parameterType="com.lkf.common.dto.Page">
+
+    select
+    <include refid="Base_Column_List"/>
+    from tb_item
+    order by id
+    limit #{offset},#{rows}
+  </select>
+  <select id="countItems" resultType = "long">
+    select count(*) as total from tb_item order by id
+  </select>-->
+
+
+  <sql id="Base_Column_List" >
+    i.id, i.title, i.sell_point as sellPoint, i.price,
+    i.num, i.barcode, i.image, i.cid, i.status, i.created, i.updated,
+    c.name as catName
+  </sql>
+
+  <select id="listItemsByPage" parameterType="com.lkf.common.dto.Page" resultType="com.lkf.ttshop.pojo.vo.TbItemCustom">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_item i
+    LEFT JOIN tb_item_cat c
+    ON i.cid=c.id
+    ORDER BY i.id
+    limit #{offset},#{rows}
+  </select>
+
+  <select id="countItems" resultType="long">
+    select
+    count(*)
+    from tb_item
+    order by id
+  </select>
+</mapper>

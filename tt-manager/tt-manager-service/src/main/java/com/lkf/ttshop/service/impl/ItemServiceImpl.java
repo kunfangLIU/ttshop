@@ -2,8 +2,8 @@ package com.lkf.ttshop.service.impl;
 
 import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
+import com.lkf.ttshop.dao.TbItemCustomMapper;
 import com.lkf.ttshop.dao.TbItemMapper;
-import com.lkf.ttshop.dao.TbItemMapperCustom;
 import com.lkf.ttshop.pojo.po.TbItem;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
 import com.lkf.ttshop.service.ItemService;
@@ -22,7 +22,8 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
     @Autowired
     private TbItemMapper itemDao;
-    private TbItemMapperCustom tbItemMapperCustom;
+    @Autowired
+    private TbItemCustomMapper tbItemMapperCustom;
     @Override
     public TbItem getById(Long itemId) {
         return itemDao.selectByPrimaryKey(itemId);
@@ -33,26 +34,27 @@ public class ItemServiceImpl implements ItemService {
         return itemDao.selectByExample(null);
     }
 
-    @Override
-    public Result<TbItemCustom> listItemsByPage(Page page) {
-        List<TbItemCustom> list = tbItemMapperCustom.listItemsByPage(page);
-        long counts = tbItemMapperCustom.countItems();
-        Result<TbItemCustom> rs = new Result<TbItemCustom>();
-        rs.setRows(list);
-        rs.setTotal(counts);
-        return rs;
-    }
 
-    /*@Override
-    public Result<TbItem> listItemByPage(Page page) {
-        List<TbItem> list = tbItemMapperCustom.listItemsByPage(page);
-        long counts = tbItemMapperCustom.countItems();
+  /*  @Override
+    public Result<TbItem> listItems(Page page) {
+        //通过itemDaoCustom查询出total，查询所有商品数量，没有附加条件
+        long total = tbItemMapperCustom.countItems();
+        List<TbItem> rows = tbItemMapperCustom.listItemsByPage(page);
+        //通过itemDaoCustom查询出rows
         Result<TbItem> rs = new Result<TbItem>();
-        rs.setRows(list);
-        rs.setTotal(counts);
+        rs.setTotal(total);
+        rs.setRows(rows);
         return rs;
     }*/
-
-
-
+  @Override
+  public Result<TbItemCustom> listItems(Page page) {
+      //通过itemDaoCustom查询出total，查询所有商品数量，没有附加条件
+      long total = tbItemMapperCustom.countItems();
+      List<TbItemCustom> rows = tbItemMapperCustom.listItemsByPage(page);
+      //通过itemDaoCustom查询出rows
+      Result<TbItemCustom> rs = new Result<TbItemCustom>();
+      rs.setTotal(total);
+      rs.setRows(rows);
+      return rs;
+  }
 }

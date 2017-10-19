@@ -33,7 +33,8 @@ public interface ItemService {
      * @return
      */
 
-//    Result<TbItem> listItemByPage(Page page);
-    Result<TbItemCustom> listItemsByPage(Page page);
+ //   Result<TbItem> listItems(Page page);
+
+    Result<TbItemCustom> listItems(Page page);
 }
 

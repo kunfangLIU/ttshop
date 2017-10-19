@@ -11,11 +11,22 @@ import java.util.List;
  * Time: 19:12
  * Version:V1.0
  */
-/*public interface TbItemMapperCustom {
+/*public interface TbItemCustomMapper {
+    *//**
+     * 分页查询商品集合
+     * @param page
+     * @return
+     *//*
     List<TbItem> listItemsByPage(Page page);
+
+    *//**
+     * 查询所有商品的总记录数
+     * @return
+     *//*
     long countItems();
 }*/
-public interface TbItemMapperCustom {
+
+public interface TbItemCustomMapper {
     List<TbItemCustom> listItemsByPage(Page page);
     long countItems();
 }
