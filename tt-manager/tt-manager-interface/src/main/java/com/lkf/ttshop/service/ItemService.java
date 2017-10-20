@@ -40,10 +40,12 @@ public interface ItemService {
 
 
     /**
-     * 通过商品编号批量修改
+     * 通过商品编号批量修改的状态
      * @param ids
      * @return
      */
-    int updateItemsByIds(List<Long> ids);
+    int updateItemsByIds(byte b,List<Long> ids);
+
+
 }
 

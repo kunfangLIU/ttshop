@@ -66,10 +66,10 @@ public class ItemServiceImpl implements ItemService {
   }
 
     @Override
-    public int updateItemsByIds(List<Long> ids) {
+    public int updateItemsByIds(byte b,List<Long> ids) {
         //创建商品的空对象
         TbItem item = new TbItem();
-        item.setStatus((byte) 3);
+        item.setStatus(b);
         //下面的三行只是准备查询的条件
         TbItemExample example = new TbItemExample();
         TbItemExample.Criteria criteria = example.createCriteria();
@@ -77,4 +77,5 @@ public class ItemServiceImpl implements ItemService {
         //真正的执行查询
         return itemDao.updateByExampleSelective(item, example);
     }
+
 }

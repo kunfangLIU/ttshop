@@ -56,13 +56,75 @@
         iconCls: 'icon-up',
         text: '上架',
         handler: function () {
-            console.log('up');
+            //获取选中的行
+            var selectRows = $('#dg').datagrid('getSelections');
+            //没有选中任何行
+            if(selectRows.length == 0){
+                $.messager.alert('提示','未选中记录','warning');
+                return;
+            }
+            //选中至少一行记录
+            $.messager.confirm('确认','您确认想更改为正常状态吗？',function(r){
+                if (r){
+                    //点击了消息窗口上的确认按钮
+                    //将选中记录的编号写进一个数组中
+                    var ids = [];
+                    for(var i=0;i<selectRows.length;i++){
+                        ids.push(selectRows[i].id);
+                    }
+                    //ajax提交数组给后台
+                    $.post(
+                        //url:提交给后台的哪个动作去处理，只有第一个参数是必选的，其余的都是可选项
+                        'items/up',
+                        //data:提交哪些数据给后台进行处理
+                        {'ids[]':ids},
+                        //function:处理后成功回调的函数
+                        function(data){
+                            alert(data);
+                            $('#dg').datagrid('reload');
+                        },
+                        //datatype:返回的数据类型
+                        'json'
+                    );
+                }
+            });
         }
     },{
         iconCls: 'icon-down',
         text: '下架',
         handler: function () {
-            console.log('down');
+            //获取选中的行
+            var selectRows = $('#dg').datagrid('getSelections');
+            //没有选中任何行
+            if(selectRows.length == 0){
+                $.messager.alert('提示','未选中记录','warning');
+                return;
+            }
+            //选中至少一行记录
+            $.messager.confirm('确认','您确认想更改状态为下架吗？',function(r){
+                if (r){
+                    //点击了消息窗口上的确认按钮
+                    //将选中记录的编号写进一个数组中
+                    var ids = [];
+                    for(var i=0;i<selectRows.length;i++){
+                        ids.push(selectRows[i].id);
+                    }
+                    //ajax提交数组给后台
+                    $.post(
+                        //url:提交给后台的哪个动作去处理，只有第一个参数是必选的，其余的都是可选项
+                        'items/down',
+                        //data:提交哪些数据给后台进行处理
+                        {'ids[]':ids},
+                        //function:处理后成功回调的函数
+                        function(data){
+                            alert(data);
+                            $('#dg').datagrid('reload');
+                        },
+                        //datatype:返回的数据类型
+                        'json'
+                    );
+                }
+            });
         }
     }];
 

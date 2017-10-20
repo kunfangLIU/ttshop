@@ -33,15 +33,47 @@ public class ItemAction {
         return itemService.getById(itemId);
     }
 
-
+    /**
+     * 分页查询
+     * @param page
+     * @param order
+     * @return
+     */
   @ResponseBody
   @RequestMapping("/items")
   public Result<TbItemCustom> listItems(Page page, Order order){
       return itemService.listItems(page,order);
   }
+
+    /**
+     * 批量删除，其实是把状态为3的隐藏掉
+     * @param ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/items/batch",method = RequestMethod.POST)
     public int updateItemsByIds(@RequestParam("ids[]") List<Long> ids){
-        return itemService.updateItemsByIds(ids);
+        return itemService.updateItemsByIds((byte)3,ids);
+    }
+
+    /**
+     * 更改上架状态
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/items/up",method = RequestMethod.POST)
+    public int uploadItemsByIds(@RequestParam("ids[]") List<Long> ids){
+        return itemService.updateItemsByIds((byte)1,ids);
+    }
+    /**
+     * 更改下架状态
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/items/down",method = RequestMethod.POST)
+    public int downloadItemsByIds(@RequestParam("ids[]") List<Long> ids){
+        return itemService.updateItemsByIds((byte)2,ids);
     }
 }
