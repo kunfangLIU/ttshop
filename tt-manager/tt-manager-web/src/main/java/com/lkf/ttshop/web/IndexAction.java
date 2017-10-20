@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexAction {
 
     @RequestMapping("/")
-    public String index(){
-        return  "index";
+    public String index() {
+        return "index";
     }
+
     @RequestMapping("/{page}")
-    public String page(@PathVariable String page){
+    public String page(@PathVariable String page) {
         return page;
     }
 }

@@ -36,5 +36,12 @@ public interface ItemService {
  //   Result<TbItem> listItems(Page page);
 
     Result<TbItemCustom> listItems(Page page);
+
+    /**
+     * 通过商品编号批量修改
+     * @param ids
+     * @return
+     */
+    int updateItemsByIds(List<Long> ids);
 }
 

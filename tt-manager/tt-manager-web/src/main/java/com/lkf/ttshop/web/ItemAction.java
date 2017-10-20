@@ -8,10 +8,10 @@ import com.lkf.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 /**
  * User: Administrator
  * Date: 2017/10/17
@@ -31,20 +31,16 @@ public class ItemAction {
 
         return itemService.getById(itemId);
     }
-   /* @RequestMapping("/items")
-    @ResponseBody
-    public List<TbItem> listItems() {
-        return itemService.listItems();
-    }*/
 
-  /*  @ResponseBody
-    @RequestMapping("/items")
-    public Result<TbItem> listItems(Page page){
-        return itemService.listItems(page);
-    }*/
+
   @ResponseBody
   @RequestMapping("/items")
   public Result<TbItemCustom> listItems(Page page){
       return itemService.listItems(page);
   }
+    @ResponseBody
+    @RequestMapping(value = "/items/batch",method = RequestMethod.POST)
+    public int updateItemsByIds(@RequestParam("ids[]") List<Long> ids){
+        return itemService.updateItemsByIds(ids);
+    }
 }

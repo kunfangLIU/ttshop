@@ -12,6 +12,8 @@ import com.lkf.ttshop.pojo.po.TbItem;
 public class TbItemCustom extends TbItem {
     //也就是页面显示的是商品名称
     private String catName;
+    //所属状态别名
+    private String statusName;
 
     public String getCatName() {
         return catName;
@@ -19,5 +21,13 @@ public class TbItemCustom extends TbItem {
 
     public void setCatName(String catName) {
         this.catName = catName;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

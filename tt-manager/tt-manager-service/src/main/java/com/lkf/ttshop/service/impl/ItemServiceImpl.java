@@ -5,6 +5,7 @@ import com.lkf.common.dto.Result;
 import com.lkf.ttshop.dao.TbItemCustomMapper;
 import com.lkf.ttshop.dao.TbItemMapper;
 import com.lkf.ttshop.pojo.po.TbItem;
+import com.lkf.ttshop.pojo.po.TbItemExample;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
 import com.lkf.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +58,17 @@ public class ItemServiceImpl implements ItemService {
       rs.setRows(rows);
       return rs;
   }
+
+    @Override
+    public int updateItemsByIds(List<Long> ids) {
+        //创建商品的空对象
+        TbItem item = new TbItem();
+        item.setStatus((byte) 3);
+        //下面的三行只是准备查询的条件
+        TbItemExample example = new TbItemExample();
+        TbItemExample.Criteria criteria = example.createCriteria();
+        criteria.andIdIn(ids);
+        //真正的执行查询
+        return itemDao.updateByExampleSelective(item, example);
+    }
 }
