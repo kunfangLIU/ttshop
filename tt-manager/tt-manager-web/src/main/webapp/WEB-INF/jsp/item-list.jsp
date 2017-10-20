@@ -68,6 +68,7 @@
 
 
     $('#dg').datagrid({
+        multiSort:true,
         pageSize:20,
         pageList:[20,40,50],
         toolbar:toolbar,
@@ -76,8 +77,8 @@
         url:'items',
         columns:[[
             {field:'ck',checkbox:true},
-            {field:'id',title:'商品编号',width:100},
-            {field:'title',title:'商品名称',width:100},
+            {field:'id',title:'商品编号',width:100,sortable:true},
+            {field:'title',title:'商品名称',width:100,sortable:true},
             {field:'sellPoint',title:'商品卖点',width:100},
             {field:'price',title:'商品价格',width:100},
             {field:'num',title:'库存数量',width:100},

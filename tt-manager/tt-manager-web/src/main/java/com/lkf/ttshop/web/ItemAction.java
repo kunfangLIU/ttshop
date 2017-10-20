@@ -1,5 +1,6 @@
 package com.lkf.ttshop.web;
 
+import com.lkf.common.dto.Order;
 import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
 import com.lkf.ttshop.pojo.po.TbItem;
@@ -35,8 +36,8 @@ public class ItemAction {
 
   @ResponseBody
   @RequestMapping("/items")
-  public Result<TbItemCustom> listItems(Page page){
-      return itemService.listItems(page);
+  public Result<TbItemCustom> listItems(Page page, Order order){
+      return itemService.listItems(page,order);
   }
     @ResponseBody
     @RequestMapping(value = "/items/batch",method = RequestMethod.POST)

@@ -1,9 +1,11 @@
 package com.lkf.ttshop.dao;
 
+import com.lkf.common.dto.Order;
 import com.lkf.common.dto.Page;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: Administrator
@@ -27,6 +29,8 @@ import java.util.List;
 }*/
 
 public interface TbItemCustomMapper {
-    List<TbItemCustom> listItemsByPage(Page page);
+    List<TbItemCustom> listItemsByPage(Page page, Order order);
     long countItems();
+
+    List<TbItemCustom> listItemsByPage(Map<String, Object> map);
 }

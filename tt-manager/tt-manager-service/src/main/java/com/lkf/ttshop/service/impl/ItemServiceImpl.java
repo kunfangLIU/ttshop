@@ -1,5 +1,6 @@
 package com.lkf.ttshop.service.impl;
 
+import com.lkf.common.dto.Order;
 import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
 import com.lkf.ttshop.dao.TbItemCustomMapper;
@@ -11,7 +12,9 @@ import com.lkf.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: Administrator
@@ -48,10 +51,13 @@ public class ItemServiceImpl implements ItemService {
         return rs;
     }*/
   @Override
-  public Result<TbItemCustom> listItems(Page page) {
+  public Result<TbItemCustom> listItems(Page page, Order order) {
+      Map<String,Object> map = new HashMap<String, Object>();
+      map.put("page",page);
+      map.put("order",order);
       //通过itemDaoCustom查询出total，查询所有商品数量，没有附加条件
       long total = tbItemMapperCustom.countItems();
-      List<TbItemCustom> rows = tbItemMapperCustom.listItemsByPage(page);
+      List<TbItemCustom> rows = tbItemMapperCustom.listItemsByPage(map);
       //通过itemDaoCustom查询出rows
       Result<TbItemCustom> rs = new Result<TbItemCustom>();
       rs.setTotal(total);

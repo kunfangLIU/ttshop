@@ -1,5 +1,6 @@
 package com.lkf.ttshop.service;
 
+import com.lkf.common.dto.Order;
 import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
 import com.lkf.ttshop.pojo.po.TbItem;
@@ -35,7 +36,8 @@ public interface ItemService {
 
  //   Result<TbItem> listItems(Page page);
 
-    Result<TbItemCustom> listItems(Page page);
+    Result<TbItemCustom> listItems(Page page, Order order);
+
 
     /**
      * 通过商品编号批量修改

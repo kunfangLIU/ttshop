@@ -22,20 +22,46 @@
   </sql>
 
   <!--商品状态为“删除”不显示到数据表格中-->
-  <select id="listItemsByPage" resultType="com.lkf.ttshop.pojo.vo.TbItemCustom" >
+ <!-- <select id="listItemsByPage" resultType="com.lkf.ttshop.pojo.vo.TbItemCustom" >
     SELECT
     <include refid="Base_Column_List" />
     FROM tb_item i
     LEFT JOIN tb_item_cat c ON i.cid=c.id
     WHERE i.status != 3
-    limit #{offset},#{rows}
-  </select>
-
+    <choose>
+        <when test="order !=null and order.order != null and order.sort !=null">
+          ORDER BY CONVERT(i.${order.sort} USING gbk) ${order.order}
+        </when>
+        <otherwise>
+          ORDER  BY  i.id desc
+        </otherwise>
+    </choose>
+    limit #{page.offset},#{page.rows}
+  </select>-->
+   <select id="listItemsByPage" resultType="com.lkf.ttshop.pojo.vo.TbItemCustom" >
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM tb_item i
+      LEFT JOIN tb_item_cat c ON i.cid=c.id
+      WHERE i.status != 3
+     <choose>
+       <when test="order != null and order.sort != null and order.order != null ">
+         <foreach collection="order.orderParams" item="item" open="order by" separator="," close="" >
+           i.${item}
+         </foreach>
+       </when>
+       <otherwise>
+         ORDER BY i.id DESC
+       </otherwise>
+     </choose>
+      limit #{page.offset},#{page.rows}
+    </select>
   <select id="countItems" resultType="_long" >
     SELECT
     COUNT(*)
     FROM tb_item
     WHERE status != 3
+    order by id desc
   </select>
 
 </mapper>
