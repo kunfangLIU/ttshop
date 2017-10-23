@@ -5,6 +5,7 @@ import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
 import com.lkf.ttshop.pojo.po.TbItem;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
+import com.lkf.ttshop.pojo.vo.TbItemQuery;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public interface ItemService {
 
  //   Result<TbItem> listItems(Page page);
 
-    Result<TbItemCustom> listItems(Page page, Order order);
+    Result<TbItemCustom> listItems(Page page, Order order, TbItemQuery query);
 
 
     /**

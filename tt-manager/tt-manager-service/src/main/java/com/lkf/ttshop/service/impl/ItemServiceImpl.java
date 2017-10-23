@@ -8,6 +8,7 @@ import com.lkf.ttshop.dao.TbItemMapper;
 import com.lkf.ttshop.pojo.po.TbItem;
 import com.lkf.ttshop.pojo.po.TbItemExample;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
+import com.lkf.ttshop.pojo.vo.TbItemQuery;
 import com.lkf.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,12 +52,13 @@ public class ItemServiceImpl implements ItemService {
         return rs;
     }*/
   @Override
-  public Result<TbItemCustom> listItems(Page page, Order order) {
+  public Result<TbItemCustom> listItems(Page page, Order order, TbItemQuery query) {
       Map<String,Object> map = new HashMap<String, Object>();
       map.put("page",page);
       map.put("order",order);
+      map.put("query",query);
       //通过itemDaoCustom查询出total，查询所有商品数量，没有附加条件
-      long total = tbItemMapperCustom.countItems();
+      long total = tbItemMapperCustom.countItems(map);
       List<TbItemCustom> rows = tbItemMapperCustom.listItemsByPage(map);
       //通过itemDaoCustom查询出rows
       Result<TbItemCustom> rs = new Result<TbItemCustom>();

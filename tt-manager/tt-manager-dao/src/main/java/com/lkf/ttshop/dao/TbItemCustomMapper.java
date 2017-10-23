@@ -1,7 +1,5 @@
 package com.lkf.ttshop.dao;
 
-import com.lkf.common.dto.Order;
-import com.lkf.common.dto.Page;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
 
 import java.util.List;
@@ -29,8 +27,14 @@ import java.util.Map;
 }*/
 
 public interface TbItemCustomMapper {
-    List<TbItemCustom> listItemsByPage(Page page, Order order);
-    long countItems();
-
+    /**
+     * 查询所有商品的总记录数
+     * @return
+     */
+    long countItems(Map<String, Object> map);
+    /**
+     * 分页查询出商品集合
+     * @return
+     */
     List<TbItemCustom> listItemsByPage(Map<String, Object> map);
 }

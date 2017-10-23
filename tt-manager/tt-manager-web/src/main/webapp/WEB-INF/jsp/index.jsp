@@ -62,5 +62,11 @@
     ttshop.registerMenuEvent();
 </script>
 
+<%--百度富文本编辑器的添加--%>
+<%--配置文件js--%>
+<script src="js/ueditor/ueditor.config.js"></script>
+<%--脚本文件--%>
+<script src="js/ueditor/ueditor.all.js"></script>
+
 </body>
 </html>
