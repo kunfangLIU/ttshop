@@ -47,6 +47,12 @@ public interface ItemService {
      */
     int updateItemsByIds(byte b,List<Long> ids);
 
-
+    /**
+     * 保存商品和商品描述
+     * @param tbItem
+     * @param content
+     * @return
+     */
+    int saveItem(TbItem tbItem, String content);
 }
 

@@ -3,16 +3,22 @@ package com.lkf.ttshop.service.impl;
 import com.lkf.common.dto.Order;
 import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
+import com.lkf.common.util.IDUtils;
+import com.lkf.ttshop.dao.TbItemCatMapper;
 import com.lkf.ttshop.dao.TbItemCustomMapper;
+import com.lkf.ttshop.dao.TbItemDescMapper;
 import com.lkf.ttshop.dao.TbItemMapper;
 import com.lkf.ttshop.pojo.po.TbItem;
+import com.lkf.ttshop.pojo.po.TbItemDesc;
 import com.lkf.ttshop.pojo.po.TbItemExample;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
 import com.lkf.ttshop.pojo.vo.TbItemQuery;
 import com.lkf.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +35,8 @@ public class ItemServiceImpl implements ItemService {
     private TbItemMapper itemDao;
     @Autowired
     private TbItemCustomMapper tbItemMapperCustom;
+    @Autowired
+    private TbItemDescMapper tbItemDescDao;
     @Override
     public TbItem getById(Long itemId) {
         return itemDao.selectByPrimaryKey(itemId);
@@ -78,6 +86,34 @@ public class ItemServiceImpl implements ItemService {
         criteria.andIdIn(ids);
         //真正的执行查询
         return itemDao.updateByExampleSelective(item, example);
+    }
+
+    /**
+     * 保存商品和商品描述
+     * @param tbItem
+     * @param desc
+     * @return
+     */
+    @Transactional
+    @Override
+    public int saveItem(TbItem tbItem, String desc) {
+        //通过工具类获取到商品id
+        long itemId = IDUtils.getItemId();
+        //存商品表，tbItem传进来时已经携带了6个属性
+        tbItem.setId(itemId);
+        tbItem.setStatus((byte)1);
+        tbItem.setCreated(new Date());
+        tbItem.setUpdated(new Date());
+        //存商品
+        int count = itemDao.insert(tbItem);
+        //存商品描述表
+        TbItemDesc tbItemDesc = new TbItemDesc();
+        tbItemDesc.setItemId(itemId);
+        tbItemDesc.setItemDesc(desc);
+        tbItemDesc.setCreated(new Date());
+        tbItemDesc.setUpdated(new Date());
+        count += tbItemDescDao.insert(tbItemDesc);
+        return count;
     }
 
 }

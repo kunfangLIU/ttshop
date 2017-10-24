@@ -77,4 +77,15 @@ public class ItemAction {
     public int downloadItemsByIds(@RequestParam("ids[]") List<Long> ids){
         return itemService.updateItemsByIds((byte)2,ids);
     }
+    /**
+     * 保存新商品
+     * @param tbItem 为了对应除商品描述以外其他字段
+     * @param content 为了对应商品描述
+     * @return 受到影响的行数
+     */
+    @ResponseBody
+    @RequestMapping(value = "/item",method = RequestMethod.POST)
+    public int saveItem (TbItem tbItem,String content){
+        return  itemService.saveItem(tbItem,content);
+    }
 }
