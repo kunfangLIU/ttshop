@@ -12,4 +12,6 @@ import com.lkf.ttshop.pojo.vo.TbItemParamCustom;
  */
 public interface ItemParamService {
     Result<TbItemParamCustom> listItemParams(Page page);
+
+    int saveItemParam(Long cid, String paramData);
 }

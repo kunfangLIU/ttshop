@@ -7,7 +7,9 @@ import com.lkf.ttshop.service.ItemParamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -25,5 +27,11 @@ public class ItemParamAction {
     @RequestMapping("/itemParams")
     public Result<TbItemParamCustom> listItemParams(Page page){
         return  itemParamService.listItemParams(page);
+    }
+    @ResponseBody
+    @RequestMapping("itemParam/{cid}")
+    public int saveItemParam(@PathVariable("cid") Long cid, @RequestParam("paramData")String paramData){
+       int count =  itemParamService.saveItemParam(cid,paramData);
+       return  count;
     }
 }

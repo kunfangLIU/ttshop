@@ -4,11 +4,13 @@ import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
 import com.lkf.ttshop.dao.TbItemParamCustomMapper;
 import com.lkf.ttshop.dao.TbItemParamMapper;
+import com.lkf.ttshop.pojo.po.TbItemParam;
 import com.lkf.ttshop.pojo.vo.TbItemParamCustom;
 import com.lkf.ttshop.service.ItemParamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,5 +38,15 @@ public class ItemParamServiceImpl implements ItemParamService {
         rs.setTotal(counts);
         rs.setRows(list);
         return rs;
+    }
+
+    @Override
+    public int saveItemParam(Long cid, String paramData) {
+        TbItemParam tbItemParam = new TbItemParam();
+        tbItemParam.setUpdated(new Date());
+        tbItemParam.setCreated(new Date());
+        tbItemParam.setItemCatId(cid);
+        tbItemParam.setParamData(paramData);
+        return tbItemParamMapper.insert(tbItemParam);
     }
 }
