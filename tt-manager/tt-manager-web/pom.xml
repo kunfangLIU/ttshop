@@ -11,11 +11,33 @@
     <name>tt-manager-web Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baidu</groupId>
+            <artifactId>ueditor</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>com.lkf</groupId>
             <artifactId>tt-manager-service</artifactId>
@@ -46,6 +68,7 @@
     <build>
         <finalName>tt-manager-web</finalName>
         <plugins>
+            <!-- 配置Tomcat插件 -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -54,7 +77,6 @@
                     <path>/ttshop</path>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>

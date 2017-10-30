@@ -23,11 +23,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ItemParamAction {
     @Autowired
     private ItemParamService itemParamService;
+
+    /**
+     * 添加规格参数的数据查询展示到页面控制层
+     * @param page
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/itemParams")
     public Result<TbItemParamCustom> listItemParams(Page page){
         return  itemParamService.listItemParams(page);
     }
+
+    /**
+     * 添加规格参数的参数添加与保存控制层
+     * @param cid
+     * @param paramData
+     * @return
+     */
     @ResponseBody
     @RequestMapping("itemParam/{cid}")
     public int saveItemParam(@PathVariable("cid") Long cid, @RequestParam("paramData")String paramData){

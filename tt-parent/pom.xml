@@ -10,6 +10,7 @@
     <modules>
         <module>../tt-common</module>
         <module>../tt-manager</module>
+        <module>../tt-upload</module>
     </modules>
     <packaging>pom</packaging>
 

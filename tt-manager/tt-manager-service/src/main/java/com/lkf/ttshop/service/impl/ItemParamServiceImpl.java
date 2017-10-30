@@ -28,6 +28,11 @@ public class ItemParamServiceImpl implements ItemParamService {
     @Autowired
     private TbItemParamCustomMapper tbItemParamMapperCustom;
 
+    /**
+     * 添加规格参数查询到页面的实现类
+     * @param page
+     * @return
+     */
     @Override
     public Result<TbItemParamCustom> listItemParams(Page page) {
         Map<String,Object> map = new HashMap<String,Object>();
@@ -39,14 +44,21 @@ public class ItemParamServiceImpl implements ItemParamService {
         rs.setRows(list);
         return rs;
     }
-
+    /**
+     * 添加规格参数与保存实现类
+     * @param cid
+     * @param paramData
+     * @return
+     */
     @Override
     public int saveItemParam(Long cid, String paramData) {
-        TbItemParam tbItemParam = new TbItemParam();
-        tbItemParam.setUpdated(new Date());
-        tbItemParam.setCreated(new Date());
-        tbItemParam.setItemCatId(cid);
-        tbItemParam.setParamData(paramData);
+       TbItemParam tbItemParam = new TbItemParam();
+       tbItemParam.setParamData(paramData);
+       tbItemParam.setItemCatId(cid);
+       tbItemParam.setCreated(new Date());
+       tbItemParam.setUpdated(new Date());
         return tbItemParamMapper.insert(tbItemParam);
     }
+
+
 }

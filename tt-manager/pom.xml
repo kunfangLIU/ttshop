@@ -9,11 +9,9 @@
         <relativePath>../tt-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <!--当前工程是pom工程，聚合工程-->
     <packaging>pom</packaging>
     <modules>
-
         <module>tt-manager-pojo</module>
         <module>tt-manager-dao</module>
         <module>tt-manager-interface</module>
@@ -34,7 +32,51 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--4: Spring相关 -->
+        <!--Spring核心依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <!--Spring DAO层的依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <!--Spring WEB层的依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <!--Spring Test的依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+
     </dependencies>
+
+
 
 
 </project>
