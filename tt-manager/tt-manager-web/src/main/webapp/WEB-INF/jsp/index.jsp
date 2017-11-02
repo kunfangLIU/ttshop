@@ -67,6 +67,16 @@
 <script src="js/ueditor/ueditor.config.js"></script>
 <%--脚本文件--%>
 <script src="js/ueditor/ueditor.all.js"></script>
-
+<%--图片上传解析器--%>
+<script>
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage') {
+            return 'http://localhost:8080/ttshop/file/upload';
+        }else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
 </body>
 </html>

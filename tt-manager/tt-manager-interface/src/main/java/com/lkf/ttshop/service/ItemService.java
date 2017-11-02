@@ -16,6 +16,12 @@ import java.util.List;
  * Version:V1.0
  */
 public interface ItemService {
+    /**
+     * 通过分类ID查询对应的商品
+     * @param id
+     * @return
+     */
+    List<TbItem> listItemsByCid(Long id);
       /**
        * 按主键查询指定商品
        * @param itemId

@@ -95,8 +95,15 @@
         }
     });
     //初始化百度的富文本编辑器
-    var ue = UE.getEditor('container');
-
+   // var ue = UE.getEditor('container');
+    //实例化富文本编辑器
+    //get请求
+    //可以初始化修改ueditor.config.js的属性
+    var ue = UE.getEditor('container', {
+        initialFrameWidth: '100%',
+        initialFrameHeight: '300',
+        serverUrl:'file/upload'
+    });
     //用来提交表单的操作
     function submitForm() {
         $('#itemAddForm').form('submit', {

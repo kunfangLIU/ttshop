@@ -33,6 +33,8 @@
           <element id="archive" name="tt-common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="tt-common" />
           </element>
+          <element id="library" level="project" name="Maven: redis.clients:jedis:2.7.2" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.3" />
           <element id="library" level="project" name="Maven: joda-time:joda-time:2.5" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
           <element id="library" level="project" name="Maven: commons-net:commons-net:3.3" />
