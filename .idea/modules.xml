@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/tt-common/tt-common.iml" filepath="$PROJECT_DIR$/tt-common/tt-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tt-lucene/tt-lucene.iml" filepath="$PROJECT_DIR$/tt-lucene/tt-lucene.iml" />
       <module fileurl="file://$PROJECT_DIR$/tt-manager/tt-manager.iml" filepath="$PROJECT_DIR$/tt-manager/tt-manager.iml" />
       <module fileurl="file://$PROJECT_DIR$/tt-manager/tt-manager-dao/tt-manager-dao.iml" filepath="$PROJECT_DIR$/tt-manager/tt-manager-dao/tt-manager-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/tt-manager/tt-manager-interface/tt-manager-interface.iml" filepath="$PROJECT_DIR$/tt-manager/tt-manager-interface/tt-manager-interface.iml" />
