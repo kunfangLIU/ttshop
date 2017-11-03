@@ -12,6 +12,7 @@
         <module>../tt-manager</module>
         <module>../tt-upload</module>
         <module>../tt-lucene</module>
+        <module>../tt-portal-web</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -280,8 +281,8 @@
                 <version>${lucene.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.wltea.analyzer.lucene</groupId>
-                <artifactId>IKAnalyzer</artifactId>
+                <groupId>IKAnalyzer</groupId>
+                <artifactId>IKAnalyzer-2012FF_u1</artifactId>
                 <version>${ik.version}</version>
             </dependency>
 

@@ -1,6 +1,7 @@
 package com.lkf.ttshop.dao;
 
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
+import com.lkf.ttshop.pojo.vo.TbSearchItemCustom;
 
 import java.util.List;
 import java.util.Map;
@@ -37,4 +38,10 @@ public interface TbItemCustomMapper {
      * @return
      */
     List<TbItemCustom> listItemsByPage(Map<String, Object> map);
+
+    /**
+     * 一键导入功能dao层接口
+     * @return
+     */
+    List<TbSearchItemCustom> getSearchItemList();
 }

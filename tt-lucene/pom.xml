@@ -25,7 +25,10 @@
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>IKAnalyzer</groupId>
+            <artifactId>IKAnalyzer-2012FF_u1</artifactId>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
