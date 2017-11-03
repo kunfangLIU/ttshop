@@ -13,6 +13,7 @@
         <module>../tt-upload</module>
         <module>../tt-lucene</module>
         <module>../tt-portal-web</module>
+        <module>../tt-search-web</module>
     </modules>
     <packaging>pom</packaging>
 
