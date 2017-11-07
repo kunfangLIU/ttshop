@@ -9,6 +9,7 @@
     <file type="web" url="file://$PROJECT_DIR$/tt-manager/tt-manager-web" />
     <file type="web" url="file://$PROJECT_DIR$/tt-portal-web" />
     <file type="web" url="file://$PROJECT_DIR$/tt-search-web" />
+    <file type="web" url="file://$PROJECT_DIR$/tt-sso-web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

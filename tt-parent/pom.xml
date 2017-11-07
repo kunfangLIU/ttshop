@@ -15,6 +15,7 @@
         <module>../tt-portal-web</module>
         <module>../tt-search-web</module>
         <module>../tt-activemq</module>
+        <module>../tt-sso-web</module>
     </modules>
     <packaging>pom</packaging>
 

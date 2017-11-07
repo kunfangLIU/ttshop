@@ -16,6 +16,7 @@
         <module name="tt-manager-web" />
         <module name="tt-portal-web" />
         <module name="tt-search-web" />
+        <module name="tt-sso-web" />
         <module name="tt-upload" />
       </profile>
     </annotationProcessing>
@@ -32,6 +33,7 @@
       <module name="tt-parent" target="1.7" />
       <module name="tt-portal-web" target="1.7" />
       <module name="tt-search-web" target="1.7" />
+      <module name="tt-sso-web" target="1.7" />
       <module name="tt-upload" target="1.7" />
     </bytecodeTargetLevel>
   </component>
