@@ -111,7 +111,7 @@ public class ItemServiceImpl implements ItemService {
      */
     @Transactional
     @Override
-    public int saveItem(TbItem tbItem, String desc) {
+    public Long saveItem(TbItem tbItem, String desc) {
         //通过工具类获取到商品id
         long itemId = IDUtils.getItemId();
         //存商品表，tbItem传进来时已经携带了6个属性
@@ -128,11 +128,15 @@ public class ItemServiceImpl implements ItemService {
         tbItemDesc.setCreated(new Date());
         tbItemDesc.setUpdated(new Date());
         count += tbItemDescDao.insert(tbItemDesc);
-        return count;
+        if(count>0){
+            return  itemId;
+        }
+        return null;
     }
 
     @Override
     public List<TbItem> listItemsByCid(Long id) {
+
         //如果缓存中出现异常，就地处理，不会影响到主业务
         try {
             //查询数据库之前需要先查询缓存

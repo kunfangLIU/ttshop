@@ -68,6 +68,14 @@
      </choose>
       limit #{page.offset},#{page.rows}
     </select>
+
+  <select id="countItems" resultType="_long" >
+    SELECT
+    COUNT(*)
+    FROM tb_item i
+    <include refid="Where_Clause"/>
+    order by id desc
+  </select>
   <select id="getSearchItemList" resultType="com.lkf.ttshop.pojo.vo.TbSearchItemCustom">
     SELECT
     i.id,
@@ -83,12 +91,20 @@
     i.status = 1
     order by i.id desc
   </select>
-  <select id="countItems" resultType="_long" >
+  <select id="getSearchItemById" parameterType="long" resultType="com.lkf.ttshop.pojo.vo.TbSearchItemCustom">
     SELECT
-    COUNT(*)
-    FROM tb_item i
-    <include refid="Where_Clause"/>
-    order by id desc
+    i.id,
+    i.title,
+    i.sell_point as sellPoint,
+    i.price,
+    i.image,
+    c.name as catName
+    FROM
+    tb_item i
+    LEFT JOIN tb_item_cat c ON i.cid = c.id
+    WHERE
+    i.status = 1
+    AND i.id=#{itemid}
   </select>
 
 </mapper>

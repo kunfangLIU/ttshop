@@ -56,9 +56,9 @@ public interface ItemService {
     /**
      * 保存商品和商品描述
      * @param tbItem
-     * @param content
+     * @param desc
      * @return
      */
-    int saveItem(TbItem tbItem, String content);
+    Long saveItem(TbItem tbItem, String desc);
 }
 

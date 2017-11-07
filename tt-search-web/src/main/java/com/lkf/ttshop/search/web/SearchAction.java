@@ -1,5 +1,6 @@
 package com.lkf.ttshop.search.web;
 
+import com.lkf.ttshop.pojo.vo.TbSearchItemResult;
 import com.lkf.ttshop.service.SearchItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class SearchAction {
     public String searchItemList(String keyword,
                                  @RequestParam(defaultValue = "1") Integer page, Model model) throws Exception {
 
-        /*if (keyword != null) {
+        if (keyword != null) {
             keyword = new String(keyword.getBytes("ISO-8859-1"), "UTF-8");
             //查询商品列表
             TbSearchItemResult searchResult = searchItemService.search(keyword, page, 60);
@@ -33,7 +34,7 @@ public class SearchAction {
             model.addAttribute("recourdCount", searchResult.getRecordCount());
             model.addAttribute("itemList", searchResult.getItemList());
 
-        }*/
+        }
 
         //返回逻辑视图
         return "search";

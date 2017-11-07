@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="tt-activemq" />
         <module name="tt-common" />
         <module name="tt-lucene" />
         <module name="tt-manager-dao" />
@@ -19,6 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
+      <module name="tt-activemq" target="1.7" />
       <module name="tt-common" target="1.7" />
       <module name="tt-lucene" target="1.7" />
       <module name="tt-manager" target="1.7" />

@@ -44,4 +44,10 @@ public interface TbItemCustomMapper {
      * @return
      */
     List<TbSearchItemCustom> getSearchItemList();
+    /**
+     * 通过商品编号查询出该商品
+     * @param itemId
+     * @return
+     */
+    TbSearchItemCustom getSearchItemById(Long itemId);
 }

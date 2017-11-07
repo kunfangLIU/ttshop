@@ -1,5 +1,6 @@
 package com.lkf.ttshop.web;
 
+import com.lkf.common.dto.MessageResult;
 import com.lkf.common.dto.Order;
 import com.lkf.common.dto.Page;
 import com.lkf.common.dto.Result;
@@ -7,11 +8,16 @@ import com.lkf.ttshop.pojo.po.TbItem;
 import com.lkf.ttshop.pojo.vo.TbItemCustom;
 import com.lkf.ttshop.pojo.vo.TbItemQuery;
 import com.lkf.ttshop.service.ItemService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import java.util.List;
 
 /**
@@ -23,9 +29,14 @@ import java.util.List;
 @Controller
 @Scope("prototype")
 public class ItemAction {
+    private org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     ItemService itemService;
+    @Autowired
+    private JmsTemplate jmsTemplate;
+    @Resource
+    private Destination topicDestination;
 
     @ResponseBody
     @RequestMapping(value = "/item/{itemId}",method = RequestMethod.GET)
@@ -85,7 +96,25 @@ public class ItemAction {
      */
     @ResponseBody
     @RequestMapping(value = "/item",method = RequestMethod.POST)
-    public int saveItem (TbItem tbItem,String content){
-        return  itemService.saveItem(tbItem,content);
+    public MessageResult saveItem (TbItem tbItem, String content){
+       MessageResult ms = null;
+       try {
+            final Long itemId = itemService.saveItem(tbItem, content);
+            //发送商品添加成功的主题，一对多的消息，发布/订阅模式
+           jmsTemplate.send(topicDestination, new MessageCreator() {
+               @Override
+               public Message createMessage(Session session) throws JMSException {
+                   TextMessage message = session.createTextMessage(itemId + "");
+                   return message;
+               }
+           });
+           ms = new MessageResult();
+           ms.setMessage("新增商品成功");
+           ms.setSuccess(true);
+       }catch (Exception e){
+           logger.error(e.getMessage(),e);
+           e.printStackTrace();
+       }
+        return  ms;
     }
 }
